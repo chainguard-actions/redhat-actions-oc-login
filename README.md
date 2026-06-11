@@ -9,6 +9,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | Version | Tag | Upstream commit |
 |---------|-----|-----------------|
 | v1 | [`v1`](https://github.com/chainguard-actions/redhat-actions-oc-login/tree/v1) | [`5eb45e8`](https://github.com/redhat-actions/oc-login/commit/5eb45e848b168b6bf6b8fe7f1561003c12e3c99d) |
+| v1.3 | [`v1.3`](https://github.com/chainguard-actions/redhat-actions-oc-login/tree/v1.3) | [`5eb45e8`](https://github.com/redhat-actions/oc-login/commit/5eb45e848b168b6bf6b8fe7f1561003c12e3c99d) |
 
 ## Privacy
 

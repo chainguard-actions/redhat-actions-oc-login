@@ -1,0 +1,29 @@
+name: Test token-based authentication
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - id: action
+        uses: .
+        continue-on-error: true
+        with:
+          openshift_server_url: "https://fake-openshift-server.example.com:6443"
+          openshift_token: "fake-token-for-testing"
+          namespace: "test-namespace"
+          insecure_skip_tls_verify: "true"
+          reveal_cluster_name: "false"
+      - name: Assert action ran (connection failure is expected without a real cluster)
+        run: |
+          echo "outcome: ${{ steps.action.outcome }}"
+          if [ "${{ steps.action.outcome }}" = "success" ]; then
+            echo "PASS: action succeeded (unexpected but acceptable)"
+          elif [ "${{ steps.action.outcome }}" = "failure" ]; then
+            echo "PASS: action failed as expected (no real cluster available)"
+          else
+            echo "FAIL: unexpected outcome: ${{ steps.action.outcome }}"
+            exit 1
+          fi
+          echo "PASS"

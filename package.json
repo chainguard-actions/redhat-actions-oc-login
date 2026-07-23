@@ -1,0 +1,43 @@
+{
+  "name": "oc-login",
+  "version": "2.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "description": "GitHub Action to log in to an OpenShift cluster and set Kubernetes context.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/redhat-actions/oc-login"
+  },
+  "bugs": {
+    "url": "https://github.com/redhat-actions/oc-login/issues"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "compile": "tsc -p .",
+    "bundle": "ncc build src/index.ts --source-map --minify",
+    "clean": "rm -rf out/ dist/",
+    "lint": "eslint . --max-warnings=0",
+    "test": "vitest run"
+  },
+  "keywords": [],
+  "author": "Red Hat Inc.",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^3.0.1",
+    "@actions/exec": "^3.0.0",
+    "js-yaml": "^5.2.1"
+  },
+  "devDependencies": {
+    "@redhat-actions/action-io-generator": "^1.5.0",
+    "@eslint/js": "^10.0.1",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^26",
+    "@vercel/ncc": "^0.44.1",
+    "eslint": "^10.7.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.65.0",
+    "vitest": "^4.1.10"
+  }
+}

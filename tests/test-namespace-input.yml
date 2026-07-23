@@ -1,0 +1,24 @@
+name: Test namespace input
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - id: action
+        uses: .
+        continue-on-error: true
+        with:
+          openshift_server_url: 'https://unreachable.example.com:6443'
+          openshift_token: 'fake-token'
+          namespace: 'my-test-namespace'
+          insecure_skip_tls_verify: 'true'
+      - name: Assert action ran (expected to fail due to unreachable server)
+        run: |
+          echo "outcome: ${{ steps.action.outcome }}"
+          if [ "${{ steps.action.outcome }}" = "success" ]; then
+            echo "FAIL: expected action to fail with unreachable server"
+            exit 1
+          fi
+          echo "PASS: action failed as expected with unreachable server"

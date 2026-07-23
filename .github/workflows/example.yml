@@ -1,0 +1,34 @@
+name: oc-login Example
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  login:
+    name: OpenShift Login and Test
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Log in and set context
+        # In a real workflow, point the 'uses' to a tag.
+        # uses: redhat-actions/oc-login@v1
+        uses: ./
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
+          openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
+          # openshift_username: ${{ env.TEST_USER }}
+          # openshift_password: ${{ secrets.OPENSHIFT_PASSWORD }}
+          certificate_authority_data: ${{ secrets.CA_DATA }}
+          namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}
+
+      - name: Test
+        run: |
+          oc api-resources

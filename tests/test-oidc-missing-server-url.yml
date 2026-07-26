@@ -1,0 +1,30 @@
+name: Test OIDC login missing server URL
+on:
+  workflow_dispatch:
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Run action with use_oidc=true but no server URL (expect failure)
+        id: action
+        uses: .
+        with:
+          use_oidc: 'true'
+          # No openshift_server_url provided — should fail immediately
+        continue-on-error: true
+
+      - name: Assert action failed due to missing server URL for OIDC
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+        run: |
+          echo "outcome: $OUTCOME"
+          if [ "$OUTCOME" != "failure" ]; then
+            echo "FAIL: expected action to fail when use_oidc=true but no server URL is provided, but outcome was '$OUTCOME'"
+            exit 1
+          fi
+          echo "PASS: action correctly failed when use_oidc=true and no server URL was provided"

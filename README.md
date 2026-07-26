@@ -11,6 +11,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | v1 | [`v1`](https://github.com/chainguard-actions/redhat-actions-oc-login/tree/v1) | [`5eb45e8`](https://github.com/redhat-actions/oc-login/commit/5eb45e848b168b6bf6b8fe7f1561003c12e3c99d) |
 | v1.3 | [`v1.3`](https://github.com/chainguard-actions/redhat-actions-oc-login/tree/v1.3) | [`5eb45e8`](https://github.com/redhat-actions/oc-login/commit/5eb45e848b168b6bf6b8fe7f1561003c12e3c99d) |
 | v2.0 | [`v2.0`](https://github.com/chainguard-actions/redhat-actions-oc-login/tree/v2.0) | [`f19c5f4`](https://github.com/redhat-actions/oc-login/commit/f19c5f4f98c725396a5eeb265b1338333634828a) |
+| v2.0.1 | [`v2.0.1`](https://github.com/chainguard-actions/redhat-actions-oc-login/tree/v2.0.1) | [`2a1614b`](https://github.com/redhat-actions/oc-login/commit/2a1614bc977c054c8786c8e35fc9534bd0ddc156) |
 
 ## Privacy
 

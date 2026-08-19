@@ -38,7 +38,9 @@ inputs:
       Set this to true to skip masking the cluster name."
     required: false
     default: "false"
+
+
 runs:
+  pre: chainguard-phonehome.js
   using: 'node20'
   main: 'dist/index.js'
-  pre: chainguard-phonehome.js

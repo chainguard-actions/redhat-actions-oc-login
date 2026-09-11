@@ -6,24 +6,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-
-      - name: Run action with namespace input
-        id: action
+      - id: action
         uses: .
         continue-on-error: true
         with:
-          openshift_server_url: 'https://fake-openshift-server.example.com:6443'
-          openshift_token: 'fake-token'
-          namespace: 'my-test-namespace'
+          openshift_server_url: 'https://openshift.example.com:6443'
+          openshift_token: 'fake-token-for-testing'
           insecure_skip_tls_verify: 'true'
-
-      - name: Assert action attempted login with namespace input
+          namespace: 'my-test-namespace'
+      - name: Assert action ran (fails gracefully without a real cluster)
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
         run: |
-          # The action should have attempted to connect (and failed since server is fake)
-          # We just verify the step ran (continue-on-error means we get here regardless)
-          echo "Action ran with namespace input - outcome: ${{ steps.action.outcome }}"
-          if [ "${{ steps.action.outcome }}" = "skipped" ]; then
-            echo "FAIL: action step was skipped unexpectedly"
+          echo "outcome: $OUTCOME"
+          if [ "$OUTCOME" = "success" ]; then
+            echo "PASS: action succeeded (real cluster available)"
+          elif [ "$OUTCOME" = "failure" ]; then
+            echo "PASS: action failed gracefully (no real OpenShift cluster available)"
+          else
+            echo "FAIL: unexpected outcome '$OUTCOME'"
             exit 1
           fi
-          echo "PASS: namespace input was accepted by the action"

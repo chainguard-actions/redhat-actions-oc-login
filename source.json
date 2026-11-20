@@ -4,8 +4,13 @@
   "version": "v1.3",
   "commit_sha": "5eb45e848b168b6bf6b8fe7f1561003c12e3c99d",
   "url": "https://github.com/redhat-actions/oc-login",
-  "policy_sha": "d636be7e43ef829af6e853da6b3c7566db9f72fe",
+  "policy_sha": "374911c4be584df24e6da57af2d990570ef0f859",
   "test_policy_sha": "843adf9e4b8f85d0c08b27b9d0b09dd094b54702",
   "test_agent_version": "2",
-  "harden_agent_version": "2"
+  "harden_agent_version": "2",
+  "dist_artifact": {
+    "gcs_uri": "gs://patch-actions-node-artifacts/dist-artifacts/redhat-actions/oc-login/v1.3/sha256-1bf58aa2fede6c9f2546af9e39d71e70628f13e5cf78aa9e676db6ffdb492ca2.tar.gz",
+    "sha256": "1bf58aa2fede6c9f2546af9e39d71e70628f13e5cf78aa9e676db6ffdb492ca2",
+    "size_bytes": 582704
+  }
 }
